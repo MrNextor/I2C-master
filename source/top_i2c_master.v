@@ -1,4 +1,4 @@
-module i2c_master
+module top_i2c_master
     #(parameter FPGA_CLK = 50_000_000,  // FPGA frequency 50 MHz
       parameter I2C_CLK  = 400_000,     // I2C bus frequency 400 KHz
       parameter ADDR_SZ  = 7,           // address widht

@@ -1,5 +1,5 @@
 `timescale 10 ns/ 1 ns
-module i2c_master_vlg_tst();
+module tb_i2c_master;
     parameter FPGA_CLK = 50_000_000; // FPGA frequency 50 MHz
     parameter I2C_CLK  = 400_000;    // I2C bus frequency 100 KHz
     parameter ADDR_SZ  = 7;          // address widht
@@ -31,7 +31,7 @@ module i2c_master_vlg_tst();
     assign IO_SDA = en_sda_slv ? sda_slv : 1'bz;        
 
 //--------------------------------------------------------------------------     
-    i2c_master dut 
+    top_i2c_master dut 
         (  
          .CLK(CLK),
          .IO_SCL(IO_SCL),
