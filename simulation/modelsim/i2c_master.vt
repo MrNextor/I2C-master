@@ -58,8 +58,8 @@ module i2c_master_vlg_tst();
 //    start of transaction (writing one byte)
       I_EN = 1'b1;
       I_RW = 1'b0;    
-      I_ADDR = 7'h01; 
-      I_DATA_WR = 8'h02;
+      I_ADDR = 7'h77; 
+      I_DATA_WR = 8'hAA;
       #2313; en_sda_slv = 1'b1; sda_slv = 1'b0; // ACK command
       #250; en_sda_slv = 1'b0; sda_slv = 1'b1;      
       I_EN = 1'b0;  
@@ -68,10 +68,10 @@ module i2c_master_vlg_tst();
 //    start of transaction (writing two bytes)
       #1250; I_EN = 1'b1;
       I_RW = 1'b0;
-      I_ADDR = 7'h03; 
-      I_DATA_WR = 8'h04;
+      I_ADDR = 7'h77; 
+      I_DATA_WR = 8'hAA;
       ack_comm;
-      I_DATA_WR = 8'h05; 
+      I_DATA_WR = 8'hAB; 
       ack_data;
       I_EN = 1'b0;
       ack_data;      
@@ -79,7 +79,7 @@ module i2c_master_vlg_tst();
 //    start of transaction (reading one byte)
       #1250; I_EN = 1'b1;
       I_RW = 1'b1; 
-      I_ADDR = 7'h06;
+      I_ADDR = 7'h77;
       ack_comm;
       I_EN = 1'b0;      
       slv_tx(8'h07);
@@ -87,34 +87,34 @@ module i2c_master_vlg_tst();
 //    start of transaction (reading two bytes)   
       #1250; I_EN = 1'b1;
       I_RW = 1'b1; 
-      I_ADDR = 7'h08; 
+      I_ADDR = 7'h77; 
       ack_comm;     
-      slv_tx(8'h09);
+      slv_tx(8'hAA);
       I_EN = 1'b0;      
-      slv_tx(8'h0A);
+      slv_tx(8'hEE);
       
 //    start of the fifth of transaction (writing one byte then restart and reading one byte)    
       #1250; I_EN = 1'b1;
       I_RW = 1'b0; 
-      I_ADDR = 7'h0B; 
+      I_ADDR = 7'h77; 
       I_DATA_WR = 8'h0C; 
       ack_comm;   
       I_RW = 1'b1; 
-      I_ADDR = 7'h0D;       
+      I_ADDR = 7'h55;       
       ack_data;
       ack_comm;        
       I_EN = 1'b0;      
-      slv_tx(8'h0E);
+      slv_tx(8'hAA);
         
 //    start of the sixth of transaction (reading one byte, then restart and writing one byte)    
       #1250; I_EN = 1'b1;
       I_RW = 1'b1;
-      I_ADDR = 7'h0F; 
+      I_ADDR = 7'h77; 
       ack_comm; 
       I_RW = 1'b0;    
-      I_ADDR = 7'h11;
-      I_DATA_WR = 8'h12;       
-      slv_tx(8'h10);
+      I_ADDR = 7'h55;
+      I_DATA_WR = 8'hAA;       
+      slv_tx(8'h88);
       ack_comm;
       I_EN = 1'b0;      
       ack_data;
